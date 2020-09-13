@@ -1,0 +1,18 @@
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/vendor/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+# Cache, session files and logs
+/var/*
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
+# Cache, session files and logs

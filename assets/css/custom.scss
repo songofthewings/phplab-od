@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~hamburgers/_sass/hamburgers/hamburgers";
+
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  background: rgb(0, 0, 0);
+  color: rebeccapurple;
+
+  .logo {
+    max-width: 150px;
+    width: 100%;
+  }
+
+  .btn-warning {
+    background-color: #fff125;
+    border-color: #fff125;
+  }
+
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    background-color: #fff125;
+  }
+}
