@@ -1,5 +1,9 @@
-{% extends 'home.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block search %}
-    <p>Search block</p>
+{% block title %} Search result page {% endblock %}
+
+{% block main %}
+    <p>Search result block</p>
+        Is that what you want?
+        <p>{{ word }}</p>
 {% endblock %}

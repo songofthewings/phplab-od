@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Main page {% endblock %}
+
+{% block main %}
+    <h1>Hello 🌍</h1>
+    {% block search %}
+
+            <p>Search block</p>
+            <form class ="form-inline my-2 my-lg-0" action="/search" method="GET">
+                <label for="word">
+                    <input class ="form-control mr-sm-2" name="word" type="search" placeholder="Enter your word here" >
+                </label>
+                <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+    {% endblock %}
+    {% block cloud %}
+        <p>Tag cloud block</p>
+    {% endblock %}
+{% endblock %}
