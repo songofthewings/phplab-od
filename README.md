@@ -11,6 +11,10 @@ composer install
 yarn install
 
 symfony server:start
+(or)
+php -S localhost:8000 from /public
+
+make a copy of .env with the name .env.local and configure it
 
 # To compile css and js:
 

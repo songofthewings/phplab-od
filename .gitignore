@@ -17,5 +17,5 @@ yarn-error.log
 !var/sessions/.gitkeep
 # Cache, session files and logs
 
-.env
+.env.local
 .idea
