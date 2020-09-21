@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Search result page {% endblock %}
+
+{% block main %}
+
+    <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
+        <select class="form-control" name="lang">
+            <option placeholder="">Language</option>
+            <option value="en-us">English US</option>
+            <option value="en-gb">English GB</option>
+            <option value="de">German</option>
+            <option value="ru">Russian</option>
+        </select>
+        <input class="form-control mr-sm-2" type="text" name="word" placeholder="Enter Keywords?" aria-label="Search">
+        <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <p>Search result block</p>
+        Is that what you want?
+    {% if word %}
+        <p>{{ word }}</p>
+    {% endif %}
+    <br>
+    <div style="float: left; width: 85%">
+{% block search %}
+    {% if data %}
+
+        {% for item in data.results %}
+            {% for lexicalEntrie in item.lexicalEntries %}
+
+
+                {% for entrie in lexicalEntrie.entries %}
+
+                    {% for pronunciation in entrie.pronunciations %}
+                            {% if(pronunciation.audioFile) %}
+                        <figure>
+                            <figcaption>Listen to the T-Rex:</figcaption>
+                            <audio
+                                    controls
+                                    src="{{ pronunciation.audioFile }}">
+                                Your browser does not support the
+                                <code>audio</code> element.
+                            </audio>
+                        </figure>
+                            {% endif %}
+                    {% endfor %}
+
+                    {% for sense in entrie.senses %}
+
+
+                        {% for definition in sense.definitions %}
+                            Definition:
+                            {{ definition }}
+                            <hr>
+                            <br>
+
+                        {% endfor %}
+
+
+                    {% endfor %}
+
+
+                {% endfor %}
+            {% endfor %}
+
+        {% endfor %}
+    {% endif %}
+    </div>
+    {% if histories %}
+        <div style="float: right">
+        <h1>History</h1>
+        {% for history in histories %}
+            <a href="/search/?word={{ history.0.name }}">{{ history.0.name }} - {{ history.count }}</a>
+            <br>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% endblock %}
