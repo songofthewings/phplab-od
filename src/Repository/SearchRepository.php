@@ -19,32 +19,12 @@ class SearchRepository extends ServiceEntityRepository
         parent::__construct($registry, Search::class);
     }
 
-    // /**
-    //  * @return Search[] Returns an array of Search objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findOneByWord($value): ?Search
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Search
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
+            ->andWhere('s.word = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
 }
