@@ -10,7 +10,7 @@ composer install
 
 yarn install
 
-make a copy of .env with the name .env.local and configure it
+symfony server:start
 
 # To compile css and js:
 
@@ -30,6 +30,10 @@ php -S localhost:8000 from /public
 php bin/console doctrine:migrations:migrate
 
 
+
+# To load fixtures:
+
+php bin/console doctrine:fixtures:load
 
 
 Enjoy !
