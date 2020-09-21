@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SearchesRepository;
+use App\Repository\SearchRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SearchesRepository::class)
+ * @ORM\Entity(repositoryClass=SearchRepository::class)
  */
-class Searches
+class Search
 {
     /**
      * @ORM\Id
