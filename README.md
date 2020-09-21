@@ -10,15 +10,29 @@ composer install
 
 yarn install
 
-symfony server:start
+make a copy of .env with the name .env.local and configure it
 
 # To compile css and js:
 
 yarn encore dev --watch
 
+# To run a Project
+
+symfony server:start
+
+or
+
+php -S localhost:8000 from /public
+
 # To load fixtures:
 
 php bin/console doctrine:fixtures:load
+
+
+# Migrations / Update DB
+
+php bin/console doctrine:migrations:migrate
+
 
 
 Enjoy !
