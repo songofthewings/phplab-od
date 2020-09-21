@@ -16,5 +16,9 @@ symfony server:start
 
 yarn encore dev --watch
 
+# To load fixtures:
+
+php bin/console doctrine:fixtures:load
+
 
 Enjoy !
