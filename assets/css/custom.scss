@@ -1,0 +1,45 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~hamburgers/_sass/hamburgers/hamburgers";
+
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  background: rgb(0, 0, 0);
+  color: rebeccapurple;
+
+  .logo {
+    max-width: 150px;
+    width: 100%;
+  }
+
+  .btn-warning {
+    background-color: #fff125;
+    border-color: #fff125;
+  }
+
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    background-color: #fff125;
+  }
+
+  form {
+    &.form-inline {
+      justify-content: center;
+    }
+
+    select {
+      &.form-control {
+        border-radius: 5px 0 0 5px;
+        border: none;
+      }
+    }
+
+    input {
+      &.form-control {
+        border-radius: 0 5px 5px 0;
+        border: none;
+        min-width: 300px;
+      }
+    }
+  }
+}

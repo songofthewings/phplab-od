@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% block search %}
+        <form class="form-inline my-2 my-lg-0">
+            <select class="form-control" name="lng">
+                <option placeholder="">Language</option>
+                <option value="en-us">English US</option>
+                <option value="en-gb">English GB</option>
+                <option value="de">German</option>
+                <option value="ru">Russian</option>
+            </select>
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter Keywords?" aria-label="Search">
+            <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    {% endblock %}
+    {% block cloud %}
+        <p>Tag cloud block</p>
+    {% endblock %}
+{% endblock %}
