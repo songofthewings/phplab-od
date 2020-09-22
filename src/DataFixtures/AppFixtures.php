@@ -2,20 +2,21 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\TagCloud;
+use App\Entity\Search;
+use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
-{
-    public function load(ObjectManager $manager)
-    {
-        for ($i = 0; $i < 50; $i++) {
-            $tag = new TagCloud();
-            $tag->setName('word '.$i);
-            $manager->persist($tag);
-        }
+class AppFixtures extends Fixture {
+	public function load( ObjectManager $manager ) {
+		$faker = Factory::create();
 
-        $manager->flush();
-    }
+		for ( $i = 0; $i < 60; $i ++ ) {
+			$search = new Search();
+			$search->setWord( $faker->word );
+			$search->setSearchCount( $faker->randomDigitNot(0) );
+			$manager->persist( $search );
+		}
+		$manager->flush();
+	}
 }

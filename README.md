@@ -24,11 +24,14 @@ or
 
 php -S localhost:8000 from /public
 
+# To load fixtures:
+
+php bin/console doctrine:fixtures:load
+
 
 # Migrations / Update DB
 
 php bin/console doctrine:migrations:migrate
-
 
 
 
