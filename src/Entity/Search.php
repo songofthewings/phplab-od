@@ -6,6 +6,7 @@ use App\Repository\SearchRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="searches")
  * @ORM\Entity(repositoryClass=SearchRepository::class)
  */
 class Search
