@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Search;
 use App\Entity\TagCloud;
 use App\Repository\TagCloudRepository;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +19,7 @@ class TagCloudController extends AbstractController
     public function tagCloud(): Response
     {
         $tagCloud = $this->getDoctrine()
-            ->getRepository(TagCloud::class)
+            ->getRepository(Search::class)
             ->findAll();
 
         return $this->render(

@@ -4,7 +4,7 @@
     {% block cloud %}
         {% if(tag_cloud) %}
             {% for item in tag_cloud %}
-                {{  item.name }}<br>
+                {{  item.word }}<br>
             {% endfor %}
         {% endif %}
     {% endblock %}
