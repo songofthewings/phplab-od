@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\SearchRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SearchRepository")
+ * @ORM\Entity(repositoryClass=SearchRepository::class)
  */
 class Search
 {
@@ -16,22 +18,55 @@ class Search
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $word;
 
-    public function getId()
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $search_count;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setName($name)
+    public function getWord(): ?string
     {
-        $this->name = $name;
+        return $this->word;
     }
 
-    public function getName()
+    public function setWord(string $word): self
     {
-        return $this->name;
+        $this->word = $word;
+
+        return $this;
+    }
+
+    public function getSearchCount(): ?int
+    {
+        return $this->search_count;
+    }
+
+    public function setSearchCount(int $search_count): self
+    {
+        $this->search_count = $search_count;
+
+        return $this;
+    }
+
+    public function resetSearchCount()
+    {
+        $this->search_count = 0;
+
+        return $this;
+    }
+
+    public function incrementSearchCount()
+    {
+        $this->search_count += 1;
+
+        return $this;
     }
 }

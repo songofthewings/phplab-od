@@ -1,17 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vladv
- * Date: 19.09.2020
- * Time: 16:21
- */
 
 namespace App\Repository;
 
 use App\Entity\Search;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
+/**
+ * @method Search|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Search|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Search[]    findAll()
+ * @method Search[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 class SearchRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -19,10 +19,17 @@ class SearchRepository extends ServiceEntityRepository
         parent::__construct($registry, Search::class);
     }
 
+    public function findOneByWord($value): ?Search
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.word = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     public function findAllUniqueName(): array
     {
-        // automatically knows to select Products
-        // the "p" is an alias you'll use in the rest of the query
         $qb = $this->createQueryBuilder('p')
             ->addSelect('count(p.id) as count')
             ->addOrderBy('count', 'DESC')
@@ -31,8 +38,5 @@ class SearchRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
 
         return $query->execute();
-
-        // to get just one result:
-        // $product = $query->setMaxResults(1)->getOneOrNullResult();
     }
 }
