@@ -98,6 +98,7 @@
     },
     "fzaninotto/faker": {
         "version": "v1.9.1"
+    },
     "guzzlehttp/guzzle": {
         "version": "7.0.1"
     },
@@ -230,6 +231,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/http-foundation": {
         "version": "v5.1.5"
