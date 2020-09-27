@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% block cloud %}
+        {% if(tag_cloud) %}
+            {% for item in tag_cloud %}
+                {{  item.word }}<br>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}
