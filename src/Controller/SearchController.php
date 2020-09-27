@@ -29,19 +29,40 @@ class SearchController extends AbstractController
                 ]
             ]);
             $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()
+                ->getRepository(Search::class);
 
-            $model = new Search();
-            $model->setName($word);
-            $entityManager->persist($model);
 
-            $entityManager->flush();
+            $item = $repository->findOneBy([
+                'word' => $word,
+            ]);
+
+            if(empty($item)){
+                $item = new Search();
+                $item->setWord($word);
+                $item->setSearchCount(1);
+                $entityManager->persist($item);
+
+                $entityManager->flush();
+            }else{
+                $item->incrementSearchCount();
+                $entityManager->persist($item);
+                $entityManager->flush();
+            }
 
             $data = json_decode($response->getBody()->getContents());
         }
 
-        $history = $this->getDoctrine()
+        $historyFind = $this->getDoctrine()
             ->getRepository(Search::class)
-            ->findAllUniqueName();
+            ->findAll();
+        $history = [];
+        if(!empty($historyFind)){
+
+            foreach ($historyFind as $key => $value){
+                $history[] = ['word' => $value->getWord(), 'search_count' => $value->getSearchCount()];
+            }
+        }
         return $this->render('search.html.twig',
             [
                 'data' => !empty($data) ? $data : null,

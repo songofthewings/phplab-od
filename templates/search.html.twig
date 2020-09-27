@@ -70,7 +70,7 @@
         <div style="float: right">
         <h1>History</h1>
         {% for history in histories %}
-            <a href="/search/?word={{ history.0.name }}">{{ history.0.name }} - {{ history.count }}</a>
+            <a href="/search/?lang=en-gb&word={{ history.word }}">{{ history.word }} - {{ history.search_count }}</a>
             <br>
         {% endfor %}
         </div>

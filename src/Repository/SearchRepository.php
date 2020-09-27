@@ -28,12 +28,12 @@ class SearchRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    public function findAllUniqueName(): array
+    public function findAllUniqueWord(): array
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('count(p.id) as count')
             ->addOrderBy('count', 'DESC')
-            ->groupBy('p.name');
+            ->groupBy('p.word');
 
         $query = $qb->getQuery();
 
