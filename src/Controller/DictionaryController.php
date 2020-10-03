@@ -13,7 +13,35 @@ class DictionaryController extends AbstractController
 {
     private $client;
 
-    public function __construct($client)
+    public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct'.$numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+
+    public function __construct1($client)
+    {
+        if (isset($client)) {
+            $this->client = $client; //for testing purposes
+        } else {
+            $this->client = new Client(
+                [
+                    'base_uri' => $_ENV['DICTIONARY_ENDPOINT'],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'app_id' => $_ENV['DICTIONARY_APP_ID'],
+                        'app_key' => $_ENV['DICTIONARY_APP_KEY']
+                    ]
+                ]
+            );
+        }
+    }
+
+    public function __construct2(Client $client)
     {
         if (isset($client)) {
             $this->client = $client; //for testing purposes

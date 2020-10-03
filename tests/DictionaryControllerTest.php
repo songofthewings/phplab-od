@@ -4,7 +4,7 @@ namespace App\Tests;
 
 
 use App\Controller\DictionaryController;
-use PHPUnit\Util\Exception;
+use PHPUnit\Runner\Exception;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
