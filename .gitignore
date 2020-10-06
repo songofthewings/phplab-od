@@ -18,4 +18,10 @@ yarn-error.log
 # Cache, session files and logs
 
 .env.local
+.env.test
 .idea
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
