@@ -27,4 +27,16 @@ class SearchRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findAllUniqueWord(): array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('count(p.id) as count')
+            ->addOrderBy('count', 'DESC')
+            ->groupBy('p.word');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }
