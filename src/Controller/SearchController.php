@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Search;
+use GuzzleHttp\Exception\ClientException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +21,20 @@ class SearchController extends AbstractController
     {
         $word = $request->get('word');
         $lang = $request->get('lang');
+        $error = [];
         if (!empty($word)) {
             $client = new \GuzzleHttp\Client();
+            try{
+
             $response = $client->request('GET', "https://od-api.oxforddictionaries.com/api/v2/entries/{$lang}/{$word}", [
                 'headers' => [
                     'app_id' => '5de77d25',
                     'app_key' => 'f63a0a48fb89cd0e7d01a5acb0dfead9',
                 ]
             ]);
+            }catch (ClientException $e){
+                $error[] = 'Not Found';
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $repository = $this->getDoctrine()
                 ->getRepository(Search::class);
@@ -49,8 +56,9 @@ class SearchController extends AbstractController
                 $entityManager->persist($item);
                 $entityManager->flush();
             }
-
+            if(!empty($response)){
             $data = json_decode($response->getBody()->getContents());
+            }
         }
 
         $historyFind = $this->getDoctrine()
@@ -69,6 +77,7 @@ class SearchController extends AbstractController
                 'histories' => !empty($history) ? $history : null,
                 'word' => !empty($word) ? $word : null,
                 'lang' => !empty($lang) ? $lang : null,
+                'error' => !empty($error) ? $error : null,
             ]
         );
     }
